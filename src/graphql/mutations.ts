@@ -1,8 +1,8 @@
 import { gql } from "graphql-request";
 
-export const GET_CHANNEL = gql`
-  query GetChannel($objectId: String!) {
-    getChannel(objectId: $objectId) {
+export const CREATE_CHANNEL = gql`
+  mutation CreateChannel($input: CreateChannelInput!) {
+    createChannel(input: $input) {
       objectId
       createdBy
       details
@@ -21,9 +21,9 @@ export const GET_CHANNEL = gql`
   }
 `;
 
-export const LIST_CHANNELS = gql`
-  query ListChannels($updatedAt: Date, $userId: String, $workspaceId: String, $name: String) {
-    listChannels(updatedAt: $updatedAt, userId: $userId, workspaceId: $workspaceId, name: $name) {
+export const UPDATE_CHANNEL = gql`
+  mutation UpdateChannel($input: UpdateChannelInput!) {
+    updateChannel(input: $input) {
       objectId
       createdBy
       details
@@ -42,9 +42,9 @@ export const LIST_CHANNELS = gql`
   }
 `;
 
-export const GET_DETAIL = gql`
-  query GetDetail($objectId: String!) {
-    getDetail(objectId: $objectId) {
+export const CREATE_DETAIL = gql`
+  mutation CreateDetail($input: CreateDetailInput!) {
+    createDetail(input: $input) {
       objectId
       chatId
       lastRead
@@ -56,9 +56,9 @@ export const GET_DETAIL = gql`
   }
 `;
 
-export const LIST_DETAILS = gql`
-  query ListDetails($updatedAt: Date, $userId: String, $workspaceId: String) {
-    listDetails(updatedAt: $updatedAt, userId: $userId, workspaceId: $workspaceId) {
+export const UPDATE_DETAIL = gql`
+  mutation UpdateDetail($input: UpdateDetailInput!) {
+    updateDetail(input: $input) {
       objectId
       chatId
       lastRead
@@ -70,9 +70,9 @@ export const LIST_DETAILS = gql`
   }
 `;
 
-export const GET_DIRECT = gql`
-  query GetDirect($objectId: String!) {
-    getDirect(objectId: $objectId) {
+export const CREATE_DIRECT = gql`
+  mutation CreateDirect($input: CreateDirectInput!) {
+    createDirect(input: $input) {
       objectId
       active
       lastMessageCounter
@@ -87,9 +87,9 @@ export const GET_DIRECT = gql`
   }
 `;
 
-export const LIST_DIRECTS = gql`
-  query ListDirects($updatedAt: Date, $workspaceId: String, $userId: String) {
-    listDirects(updatedAt: $updatedAt, workspaceId: $workspaceId, userId: $userId) {
+export const UPDATE_DIRECT = gql`
+  mutation UpdateDirect($input: UpdateDirectInput!) {
+    updateDirect(input: $input) {
       objectId
       active
       lastMessageCounter
@@ -104,9 +104,9 @@ export const LIST_DIRECTS = gql`
   }
 `;
 
-export const GET_MESSAGE = gql`
-  query GetMessage($objectId: String!) {
-    getMessage(objectId: $objectId) {
+export const CREATE_MESSAGE = gql`
+  mutation CreateMessage($input: CreateMessageInput!) {
+    createMessage(input: $input) {
       objectId
       chatId
       chatType
@@ -132,9 +132,9 @@ export const GET_MESSAGE = gql`
   }
 `;
 
-export const LIST_MESSAGES = gql`
-  query ListMessages($updatedAt: Date, $chatId: String, $limit: Int, $nextToken: String) {
-    listMessages(updatedAt: $updatedAt, chatId: $chatId, limit: $limit, nextToken: $nextToken) {
+export const UPDATE_MESSAGE = gql`
+  mutation UpdateMessage($input: UpdateMessageInput!) {
+    updateMessage(input: $input) {
       objectId
       chatId
       chatType
@@ -160,9 +160,9 @@ export const LIST_MESSAGES = gql`
   }
 `;
 
-export const GET_PRESENCE = gql`
-  query GetPresence($objectId: String!) {
-    getPresence(objectId: $objectId) {
+export const CREATE_PRESENCE = gql`
+  mutation CreatePresence($input: CreatePresenceInput!) {
+    createPresence(input: $input) {
       objectId
       lastPresence
       updatedAt
@@ -171,9 +171,20 @@ export const GET_PRESENCE = gql`
   }
 `;
 
-export const GET_USER = gql`
-  query GetUser($objectId: String, $email: String) {
-    getUser(objectId: $objectId, email: $email) {
+export const UPDATE_PRESENCE = gql`
+  mutation UpdatePresence($input: UpdatePresenceInput!) {
+    updatePresence(input: $input) {
+      objectId
+      lastPresence
+      updatedAt
+      createdAt
+    }
+  }
+`;
+
+export const CREATE_USER = gql`
+  mutation CreateUser($input: CreateUserInput!) {
+    createUser(input: $input) {
       objectId
       displayName
       email
@@ -190,9 +201,9 @@ export const GET_USER = gql`
   }
 `;
 
-export const LIST_USERS = gql`
-  query ListUsers($updatedAt: Date, $workspaceId: String) {
-    listUsers(updatedAt: $updatedAt, workspaceId: $workspaceId) {
+export const UPDATE_USER = gql`
+  mutation UpdateUser($input: UpdateUserInput!) {
+    updateUser(input: $input) {
       objectId
       displayName
       email
@@ -209,9 +220,9 @@ export const LIST_USERS = gql`
   }
 `;
 
-export const GET_WORKSPACE = gql`
-  query GetWorkspace($objectId: String!) {
-    getWorkspace(objectId: $objectId) {
+export const CREATE_WORKSPACE = gql`
+  mutation CreateWorkspace($input: CreateWorkspaceInput!) {
+    createWorkspace(input: $input) {
       objectId
       channelId
       details
@@ -227,9 +238,27 @@ export const GET_WORKSPACE = gql`
   }
 `;
 
-export const GET_REACTION = gql`
-  query GetReaction($objectId: String!) {
-    getReaction(objectId: $objectId) {
+export const UPDATE_WORKSPACE = gql`
+  mutation CreateWorkspace($input: UpdateWorkspaceInput!) {
+    updateWorkspace(input: $input) {
+      objectId
+      channelId
+      details
+      isDeleted
+      members
+      name
+      ownerId
+      photoURL
+      thumbnailURL
+      createdAt
+      updatedAt
+    }
+  }
+`;
+
+export const CREATE_REACTION = gql`
+  mutation CreateReaction($input: CreateReactionInput!) {
+    createReaction(input: $input) {
       objectId
       chatId
       messageId
@@ -242,9 +271,9 @@ export const GET_REACTION = gql`
   }
 `;
 
-export const LIST_REACTIONS = gql`
-  query ListReactions($updatedAt: Date, $chatId: String) {
-    listReactions(updatedAt: $updatedAt, chatId: $chatId) {
+export const UPDATE_REACTION = gql`
+  mutation UpdateReaction($input: UpdateReactionInput!) {
+    updateReaction(input: $input) {
       objectId
       chatId
       messageId
